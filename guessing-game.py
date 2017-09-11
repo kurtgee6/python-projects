@@ -1,4 +1,3 @@
-#generate a random number between 1 and 9 (includes 1 and 9)
 #Ask the user to guess the number
 #Tell whether the user was too high or too low or if they got it right
 
@@ -42,16 +41,8 @@ while number_guesses < 5:
         break
 
 
-    #extra stuff
+#extra stuff
 #Keep track of how many guesses the user has
-#Keep going until user types exit
-
-
-
-
-
-
-
 
 
 
