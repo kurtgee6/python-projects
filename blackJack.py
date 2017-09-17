@@ -1,30 +1,44 @@
 #generate random numbers from 1-21
 import random
 
-random_number_one = random.randint(1,21)
-random_number_two = random.randint(1,21)
+#Dealer numbers (random)
+random_dealer_one = random.randint(1,11)
+random_dealer_two = random.randint(1,11)
 
-#There must be a dealer and a player
+#Player numbers (random)
+random_player_one = int(random.randint(1,11))
+random_player_two = int(random.randint(1,11))
 
-player = input('Would you like to HIT or STAY? ')
+#random number
+addNum = int(random.randint(1,11))
 
-if player == 'HIT':
-    if random_number_one + random_number_two == 21:
-        print("Your first card is: " + str(random_number_two))
-        print("Your second card is: " + str(random_number_one))
-        print("Congrats, you've beat the DEALER")
-    elif random_number_one + random_number_two < 17:
-        print("Your first card is: " + str(random_number_two))
-        print("Your second card is: " + str(random_number_one))
-        player
-    elif random_number_one + random_number_two > 17:
-        print("Your first card is: " + str(random_number_two))
-        print("Your second card is: " + str(random_number_one))
-        print("Sorry, the DEALER won this round.")
+#start game screen
+def welcome():
+    print('')
+    print(""" == LET'S PLAY BLACKJACK! == """)
+    print('')
 
+welcome()
+
+#print out the numbers of player
 
 
-#both are given two random numbers
-#if the PLAYESs number is greater than the DEALERS number
-#the player wins
-#there will be two COMMANDS...a HIT and a STAND
+print('Your first card is: ' + str(random_player_one))
+print('Your second card is: ' + str(random_player_two))
+
+currentPlayerVal = random_player_one + random_player_two
+
+
+user_answer = input("Would you like to HIT or STAND? ").lower().strip()
+
+def ask_user(a, value, random):
+    if a == "hit":
+        numberRightNow = value + random
+        print(numberRightNow)
+        if numberRightNow > 21:
+            print("Dealer Wins")
+    elif a == "stand":
+        print('stand')
+
+#calling back the function
+ask_user(user_answer, currentPlayerVal, addNum)
