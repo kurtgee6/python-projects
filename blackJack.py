@@ -10,7 +10,7 @@ random_player_one = int(random.randint(1,11))
 random_player_two = int(random.randint(1,11))
 
 #random number
-addNum = int(random.randint(1,11))
+anotherCard = int(random.randint(1,11))
 
 #start game screen
 def welcome():
@@ -23,13 +23,19 @@ welcome()
 #print out the numbers of player
 
 
-print('Your first card is: ' + str(random_player_one))
-print('Your second card is: ' + str(random_player_two))
+print('Players first card is: ' + str(random_player_one))
+print('Players second card is: ' + str(random_player_two))
+print("")
+print('Dealers first card is: ' + str(random_dealer_one))
+print('Dealers second cars is: ?')
+print("")
 
 currentPlayerVal = random_player_one + random_player_two
-
+currentDealerVal = random_dealer_one + random_dealer_two
 
 user_answer = input("Would you like to HIT or STAND? ").lower().strip()
+print('')
+
 
 def ask_user(a, value, random):
     if a == "hit":
@@ -37,8 +43,16 @@ def ask_user(a, value, random):
         print(numberRightNow)
         if numberRightNow > 21:
             print("Dealer Wins")
+        elif numberRightNow == 21:
+            print("You've won the round")
     elif a == "stand":
-        print('stand')
+        if currentPlayerVal > currentDealerVal:
+            print("You won the round. The Dealer had a total of: {}".format(currentDealerVal))
+        elif currentPlayerVal == currentDealerVal:
+            print('Push')
+        elif currentPlayerVal < currentDealerVal:
+            print('You have lost the round. The Dealer had a total of: {}'.format(currentDealerVal))
+
 
 #calling back the function
-ask_user(user_answer, currentPlayerVal, addNum)
+ask_user(user_answer, currentPlayerVal, anotherCard)
