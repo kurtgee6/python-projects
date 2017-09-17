@@ -1,4 +1,4 @@
-#generate random numbers from 1-21
+##generate random numbers from 1-21
 import random
 
 #Dealer numbers (random)
@@ -9,10 +9,10 @@ random_dealer_two = random.randint(1,11)
 random_player_one = int(random.randint(1,11))
 random_player_two = int(random.randint(1,11))
 
-#random number
+##random number
 anotherCard = int(random.randint(1,11))
 
-#start game screen
+##start game screen
 def welcome():
     print('')
     print(""" == LET'S PLAY BLACKJACK! == """)
@@ -20,9 +20,7 @@ def welcome():
 
 welcome()
 
-#print out the numbers of player
-
-
+##print out the numbers of player
 print('Players first card is: ' + str(random_player_one))
 print('Players second card is: ' + str(random_player_two))
 print("")
@@ -30,29 +28,42 @@ print('Dealers first card is: ' + str(random_dealer_one))
 print('Dealers second cars is: ?')
 print("")
 
+#total of players first two cards
 currentPlayerVal = random_player_one + random_player_two
+
+#total of dealers first two cards
 currentDealerVal = random_dealer_one + random_dealer_two
 
-user_answer = input("Would you like to HIT or STAND? ").lower().strip()
-print('')
+def ask_user(player, another, dealer):
+
+    user_answer = input("Would you like to HIT or STAND? ").lower().strip()
+
+    if user_answer == "hit" and dealer != 21:
+        newCurrent = player + another
+
+        if (newCurrent < 17):
+            print("Current Total: {}".format(newCurrent))
+            next_answer = input("Would you like to HIT or STAND? ").lower().strip()
+            if (next_answer == "hit"):
+                print("congrats faggot")
+
+        if (newCurrent > 17 and newCurrent < 21):
+            print("Current Total: {}".format(newCurrent))
+            next_answer = input("Would you like to HIT or STAND? ").lower().strip()
+            if (next_answer == "hit"):
+                print("oompa loompa")
+
+        elif (newCurrent > 21):
+            print('')
+            print('You have lost this round')
+            print('Player Total: {}'.format(newCurrent))
+            print('Dealer Total: {}'.format(currentDealerVal))
+            print('')
+
+    elif(user_answer == "stand"):
+        print('put')
+
+ask_user(currentPlayerVal, anotherCard, currentDealerVal)
 
 
-def ask_user(a, value, random):
-    if a == "hit":
-        numberRightNow = value + random
-        print(numberRightNow)
-        if numberRightNow > 21:
-            print("Dealer Wins")
-        elif numberRightNow == 21:
-            print("You've won the round")
-    elif a == "stand":
-        if currentPlayerVal > currentDealerVal:
-            print("You won the round. The Dealer had a total of: {}".format(currentDealerVal))
-        elif currentPlayerVal == currentDealerVal:
-            print('Push')
-        elif currentPlayerVal < currentDealerVal:
-            print('You have lost the round. The Dealer had a total of: {}'.format(currentDealerVal))
 
-
-#calling back the function
-ask_user(user_answer, currentPlayerVal, anotherCard)
