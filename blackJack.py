@@ -1,4 +1,9 @@
-##generate random numbers from 1-21
+
+#DISCLAIMER: This is the first time I've ever written in Python, I've heard that python is a very friendly language to code with and wanted to try for myself. Here is an attempt I've made to create my own blackjack game for python practices. Although most of the game logic isn't finished, it's still a solid game that runs smoothly.
+
+    #My GOAL for this game was to learn how to use functions and pass paramaters inside the functions. I feel that I've completed my goal but still want to challenge myself even more by adding other features like double down, push, the value of the ace and more of the dealers logic.
+
+#generate random numbers from 1-21
 import random
 
 #Dealer numbers (random)
@@ -9,20 +14,21 @@ random_dealer_two = random.randint(1,11)
 random_player_one = int(random.randint(1,11))
 random_player_two = int(random.randint(1,11))
 
-##random number
+#random number
 anotherCard = int(random.randint(1,11))
 anotherCardTwo = int(random.randint(1,11))
 anotherCardThree = int(random.randint(1,11))
 
-##start game screen
+#welcome function
 def welcome():
     print('')
     print(""" == LET'S PLAY BLACKJACK! == """)
     print('')
 
+#start of game screen
 welcome()
 
-##print out the numbers of player
+#print out the numbers of player
 print('Players first card is: ' + str(random_player_one))
 print('Players second card is: ' + str(random_player_two))
 print("")
@@ -36,13 +42,17 @@ currentPlayerVal = random_player_one + random_player_two
 #total of dealers first two cards
 currentDealerVal = random_dealer_one + random_dealer_two
 
+#passing parameters inside the function
 def ask_user(player, another, dealer, anotherTwo, anotherThree):
-
+    
+    #createed variable for user input
     user_answer = input("Would you like to HIT or STAND? ").lower().strip()
-
+    
+    #if user types hit...do this
     if user_answer == "hit" and dealer != 21:
         newCurrent = player + another
-
+        
+        #checking to see if users value right now is less than 17
         if (newCurrent < 17):
             
             print('')
@@ -77,6 +87,7 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
                     print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
+                    return
                         
             elif next_answer == "stand":
                 newCurrent += anotherTwo
@@ -97,6 +108,7 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
                     print('')
                     return
 
+        #checking to see if users value right now is between 17 and 21
         elif (newCurrent > 17 and newCurrent < 21):
             
             print("Current Total: {}".format(newCurrent))
@@ -112,6 +124,7 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
                     print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
+                    return
                 
                 elif (newCurrent < 21 and newCurrent > dealer):
                     print('')
@@ -119,6 +132,7 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
                     print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
+                    return
         
             elif (next_answer == "stand"):
                 
@@ -138,6 +152,7 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
                     print('')
                     return
 
+        #checking to see if users value right now is more than 21
         elif (newCurrent > 21):
             print('')
             print('You have lost this round')
@@ -146,6 +161,7 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
             print('')
             return
 
+    #if user types stand...do this
     elif(user_answer == "stand"):
         if (player > dealer and player < 21):
             print('')
@@ -163,15 +179,16 @@ def ask_user(player, another, dealer, anotherTwo, anotherThree):
             print('')
             return
 
-if currentDealerVal == 21 and currentDealerVal != currentPlayerVal:
-    print('Dealer Won. Dealer Total: {}'.format(currentDealerVal))
-    print('')
-elif currentPlayerVal == 21 and currentDealerVal != currentPlayerVal:
-    print('Player Won. Player Total: {}'.format(currentPlayerVal))
-    print('')
-else:
-    ask_user(currentPlayerVal, anotherCard, currentDealerVal ,anotherCardTwo, anotherCardThree)
+#main game function
+def game ():
+    if currentDealerVal == 21 and currentDealerVal != currentPlayerVal:
+        print('Dealer Won. Dealer Total: {}'.format(currentDealerVal))
+        print('')
+    elif currentPlayerVal == 21 and currentDealerVal != currentPlayerVal:
+        print('Player Won. Player Total: {}'.format(currentPlayerVal))
+        print('')
+    else:
+        ask_user(currentPlayerVal, anotherCard, currentDealerVal ,anotherCardTwo, anotherCardThree)
 
-
-
-#stand after the first hit
+#start game
+game()
