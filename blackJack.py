@@ -27,6 +27,7 @@ print('Players second card is: ' + str(random_player_two))
 print("")
 print('Dealers first card is: ' + str(random_dealer_one))
 print('Dealers second cars is: ?')
+print(random_dealer_two)
 print("")
 
 #total of players first two cards
@@ -40,26 +41,40 @@ def ask_user(player, another, dealer, anotherTwo):
     user_answer = input("Would you like to HIT or STAND? ").lower().strip()
 
     if user_answer == "hit" and dealer != 21:
-        print(currentDealerVal)
         newCurrent = player + another
 
         if (newCurrent < 17):
+            
+            print('')
             print("Current Total: {}".format(newCurrent))
             next_answer = input("Would you like to HIT or STAND? ").lower().strip()
+            print('')
+            
             if (next_answer == "hit"):
                 newCurrent += anotherTwo
     
                 if(newCurrent > 21):
+                    
+                    print('')
                     print("Current Total: {}".format(newCurrent))
                     print('You have lost this round')
+                    print('')
+                
                 elif(newCurrent == 21):
+                    
+                    print('')
                     print("Congrats you got 21!")
-                    print('Dealer Total: {}'.format(currentDealerVal))
                     print('Player Total: {}'.format(newCurrent))
-                elif(newCurrent < 21 and newCurrent > currentDealerVal):
+                    print('Dealer Total: {}'.format(dealer))
+                    print('')
+                
+                elif(newCurrent < 21 and newCurrent > dealer):
+                    
+                    print('')
                     print("Congrats you've won this round")
-                    print('Dealer Total: {}'.format(currentDealerVal))
                     print('Player Total: {}'.format(newCurrent))
+                    print('Dealer Total: {}'.format(dealer))
+                    print('')
 
         elif (newCurrent > 17 and newCurrent < 21):
             print("Current Total: {}".format(newCurrent))
@@ -71,12 +86,22 @@ def ask_user(player, another, dealer, anotherTwo):
             print('')
             print('You have lost this round')
             print('Player Total: {}'.format(newCurrent))
-            print('Dealer Total: {}'.format(currentDealerVal))
+            print('Dealer Total: {}'.format(dealer))
             print('')
 
     elif(user_answer == "stand"):
-        print('put')
-
+        if (player > dealer and player < 21):
+            print('')
+            print('You have won this round')
+            print('Player Total: {}'.format(player))
+            print('Dealer Total: {}'.format(dealer))
+            print('')
+        elif (player < dealer and dealer < 21 ):
+            print('')
+            print('Dealer won this round')
+            print('Player Total: {}'.format(player))
+            print('Dealer Total: {}'.format(dealer))
+            print('')
 
 if currentDealerVal == 21 and currentDealerVal != currentPlayerVal:
     print('Dealer Won. Dealer Total: {}'.format(currentDealerVal))
