@@ -12,6 +12,7 @@ random_player_two = int(random.randint(1,11))
 ##random number
 anotherCard = int(random.randint(1,11))
 anotherCardTwo = int(random.randint(1,11))
+anotherCardThree = int(random.randint(1,11))
 
 ##start game screen
 def welcome():
@@ -35,7 +36,7 @@ currentPlayerVal = random_player_one + random_player_two
 #total of dealers first two cards
 currentDealerVal = random_dealer_one + random_dealer_two
 
-def ask_user(player, another, dealer, anotherTwo):
+def ask_user(player, another, dealer, anotherTwo, anotherThree):
 
     user_answer = input("Would you like to HIT or STAND? ").lower().strip()
 
@@ -103,38 +104,36 @@ def ask_user(player, another, dealer, anotherTwo):
             
             if (next_answer == "hit"):
                 
-                newNewCurrent += newCurrent
+                newCurrent += anotherThree
                 
-                if (newNewCurrent > 21 or newNewCurrent < dealer):
+                if (newCurrent > 21 or newCurrent < dealer):
                     print('')
                     print('You have lost this round')
-                    print('Player Total: {}'.format(newNewCurrent))
+                    print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
                 
-                elif (newNewCurrent < 21 and newNewCurrent > dealer):
+                elif (newCurrent < 21 and newCurrent > dealer):
                     print('')
                     print('You have won this round')
-                    print('Player Total: {}'.format(newNewCurrent))
+                    print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
         
             elif (next_answer == "stand"):
                 
-                newNewCurrent += newCurrent
-
-                if (newNewCurrent > dealer and newNewCurrent < 21):
+                if (newCurrent > dealer and newCurrent < 21):
                     print('')
                     print('You have won this round')
-                    print('Player Total: {}'.format(newNewCurrent))
+                    print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
                     return
         
-                elif (newNewCurrent > 21 ):
+                elif (newCurrent > 21 ):
                     print('')
                     print('Dealer won this round')
-                    print('Player Total: {}'.format(newNewCurrent))
+                    print('Player Total: {}'.format(newCurrent))
                     print('Dealer Total: {}'.format(dealer))
                     print('')
                     return
@@ -171,7 +170,7 @@ elif currentPlayerVal == 21 and currentDealerVal != currentPlayerVal:
     print('Player Won. Player Total: {}'.format(currentPlayerVal))
     print('')
 else:
-    ask_user(currentPlayerVal, anotherCard, currentDealerVal ,anotherCardTwo)
+    ask_user(currentPlayerVal, anotherCard, currentDealerVal ,anotherCardTwo, anotherCardThree)
 
 
 
